@@ -9,7 +9,23 @@ export const Container = styled.div`
   grid-template-areas:
     "header"
     "content"
-  ;
+      ;
+
+  > main {
+    grid-area: content;
+    justify-content: space-between;
+    overflow-y: auto;
+  }
+
+  .tags {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+
+    > NoteItem {
+      width: 100%;
+    }
+  }
 `;
 
 export const Form = styled.form`

@@ -5,7 +5,7 @@ export function Header()  {
 
   return (
     <Container>
-      <Profile>
+      <Profile to="/profile">
         <img src="https://thispersondoesnotexist.com/" alt="Fotos de Pessoas que não existem" />
         <div>
           <span>Bem-vindo</span>

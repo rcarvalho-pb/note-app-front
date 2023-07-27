@@ -18,4 +18,8 @@ export const Container = styled.textarea`
   &::placeholder {
     color: ${({ theme }) => theme.COLORS.GRAY_300};
   }
+
+  &:focus{
+    outline: 0;
+  }
 `;

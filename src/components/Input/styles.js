@@ -21,9 +21,15 @@ export const Container = styled.div`
     background: transparent;
     border: 0;
 
-    &placeholder {
+    &::placeholder {
       color: ${({ theme }) => theme.COLORS.GRAY_300};
 
+    }
+
+    &:focus{
+      box-shadow: 0 0 0 0;
+      border: 0 none;
+      outline: 0;
     }
   }
   
