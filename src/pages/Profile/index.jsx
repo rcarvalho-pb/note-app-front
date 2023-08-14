@@ -17,8 +17,8 @@ export function Profile() {
 
   const [name, setName] = useState(user.name);
   const [email, setEmail] = useState(user.email);
-  const [password, setPassword] = useState();
-  const [newPassword, setNewPassword] = useState();
+  const [passwordOld, setPasswordOld] = useState();
+  const [passwordNew, setPasswordNew] = useState();
 
   const avatarURL = user.avatar ? `${api.defaults.baseURL}/files/${user.avatar}` : avatarPlaceholder;
 
@@ -27,13 +27,13 @@ export function Profile() {
 
   async function handleUpdate() {
     const user = {
-      id: user.id,
       name,
       email,
-      password: newPassword,
-      oldPassword: password,
+      password: passwordNew,
+      old_password: passwordOld,
     }
-    await updateProfile({user, avatarFile})
+    console.log(user);
+    await updateProfile({ user, avatarFile })
   }
 
   function handleChangeAvatar(event) {
@@ -86,13 +86,13 @@ export function Profile() {
           placeholder="Senha Atual"
           type="password"
           icon={FiLock}
-          onChange={e => setPassword(e.target.value)}
+          onChange={e => setPasswordOld(e.target.value)}
         />
         <Input 
           placeholder="Nova Senha"
           type="password"
           icon={FiLock}
-          onChange={e => setNewPassword(e.target.value)}
+          onChange={e => setPasswordNew(e.target.value)}
         />
         <Button title="Salvar" onClick={handleUpdate}/>
       </Form>

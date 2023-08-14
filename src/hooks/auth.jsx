@@ -4,7 +4,9 @@ import { api } from '../services/api'
 export const AuthContext = createContext({});
 
 function AuthProvider({ children }){
+
   const [data, setData] = useState({})
+  
   async function signIn({ email, password }) {
     try{
       const response = await api.post('/sessions', {email, password});
@@ -31,10 +33,10 @@ function AuthProvider({ children }){
     setData({});
   }
 
-  async function updateProfile({ user, avatarFile }) {
+  async function updateProfile({user, avatarFile}) {
     try{
 
-      console.log(user)
+      console.log(user, avatarFile)
 
       if(avatarFile) {
         const fileUploadForm = new FormData();
@@ -44,7 +46,7 @@ function AuthProvider({ children }){
         user.avatar = response.data.avatar;
       }
       await api.put("/users", user);
-      localStorage.setItem("@someonenotes:user");
+      localStorage.setItem("@someonenotes:user", JSON.stringify(user));
 
       setData({user, token: data.token});
       alert("Perfil atualizado!")
