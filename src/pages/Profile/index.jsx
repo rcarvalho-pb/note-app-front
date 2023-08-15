@@ -9,7 +9,7 @@ import { Link } from 'react-router-dom';
 
 import { api } from '../../services/api';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useAuth } from '../../hooks/auth';
 
 export function Profile() {
@@ -43,6 +43,18 @@ export function Profile() {
     const imagePreview = URL.createObjectURL(file);
     setAvatar(imagePreview);
   }
+
+  useEffect(() => {
+    const listener = event => {
+        if (event.code === "Enter" || event.code === "NumpadEnter") {
+            handleUpdate();
+        }
+      };
+      document.addEventListener("keydown", listener);
+      return () => {
+        document.removeEventListener("keydown", listener);
+      };
+}, [name, email, passwordOld, passwordNew]);
 
   return (
     <Container>

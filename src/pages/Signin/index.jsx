@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Container, Form, Background } from './styles'
 import { Input } from '../../components/Input'
 import { Button } from '../../components/Button'
@@ -18,6 +18,19 @@ export function SignIn() {
     function handleSignIn() {
         signIn({ email, password });
     }
+
+    useEffect(() => {
+        const listener = event => {
+            if (event.code === "Enter" || event.code === "NumpadEnter") {
+                console.log("email e senha:", email, password);
+                signIn({ email, password });
+            }
+          };
+          document.addEventListener("keydown", listener);
+          return () => {
+            document.removeEventListener("keydown", listener);
+          };
+    }, [email, password]);
 
     return (
         <Container>
